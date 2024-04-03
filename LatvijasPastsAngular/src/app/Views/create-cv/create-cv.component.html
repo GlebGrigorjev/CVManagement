@@ -1,0 +1,351 @@
+<form #form="ngForm" (submit)="onSubmit(form)" novalidate autocomplete="off"
+  [class.submitted]="cvFacadeService.formSubmitted">
+  <input type="hidden" name="cvId" [value]="cvData.id">
+  <div class="container-fluid">
+    <div class="container">
+      <div class="d-flex justify-content-between align-items-lg-center py-3 flex-column flex-lg-row">
+        <h2 class="h5 mb-3 mb-lg-0"><a href="../../pages/admin/customers.html" class="text-muted"><i
+              class="bi bi-arrow-left-square me-2"></i></a> Create New CV</h2>
+        <!--Create/Cancle-->
+        <div class="hstack gap-3">
+          <button class="btn btn-light btn-sm btn-icon-text" [routerLink]="['/']"><span
+              class="text">Cancel</span></button>
+          <button class="btn btn-primary btn-sm btn-icon-text" type="submit"><span class="text">Create</span></button>
+        </div>
+      </div>
+      <!--Basic Information-->
+      <div class="row">
+        <div class="col-lg-8">
+          <div class="card mb-4">
+            <div class="card-body">
+              <h3 class="h6 mb-4">Basic information</h3>
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="mb-3">
+                    <label class="form-label">First name</label>
+                    <input type="text" class="form-control" name="cvName" [(ngModel)]="cvData.name" required>
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="mb-3">
+                    <label class="form-label">Last name</label>
+                    <input type="text" class="form-control" name="cvSurname" [(ngModel)]="cvData.surname" required>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="mb-3">
+                    <label class="form-label">Email</label>
+                    <input type="email" class="form-control" name="cvEMail" [(ngModel)]="cvData.eMail" required>
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="mb-3">
+                    <label class="form-label">Phone number</label>
+                    <input type="text" class="form-control" name="cvPhoneNumber" [(ngModel)]="cvData.phoneNumber"
+                      required>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="mb-3">
+                    <label class="form-label">Birthday</label>
+                    <input type="date" placeholder="2017-06-01" class="form-control" name="cvBirthday"
+                      [(ngModel)]="cvData.dateOfBirth" required>
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="mb-3">
+                    <label class="form-label">Age</label>
+                    <input *ngIf="calculateAge(cvData.dateOfBirth) >= 18" type="number" min="18" max="100"
+                      class="form-control" name="cvAge" [value]="calculateAge(cvData.dateOfBirth)" readonly>
+                    <div *ngIf="calculateAge(cvData.dateOfBirth) < 18" class="text-danger">Underage</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--Address Information-->
+          <div class="card mb-4">
+            <div class="card-body">
+              <h3 class="h6 mb-4">Address</h3>
+              <div class="mb-3">
+                <label class="form-label">Street Address</label>
+                <input type="text" class="form-control" name="cvLivingStreet" [(ngModel)]="cvData.currentAddress.street"
+                  required>
+              </div>
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="mb-3">
+                    <label class="form-label">Country</label>
+                    <input type="text" class="form-control" name="cvLivingCountry"
+                      [(ngModel)]="cvData.currentAddress.country" required>
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="mb-3">
+                    <label class="form-label">City</label>
+                    <input type="text" class="form-control" name="cvLivingCity" [(ngModel)]="cvData.currentAddress.city"
+                      required>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="mb-3">
+                    <label class="form-label">ZIP code</label>
+                    <input type="text" class="form-control" name="cvLivingPostalIndex"
+                      [(ngModel)]="cvData.currentAddress.postalIndex" required>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--Education Information-->
+          <ng-container *ngFor="let education of cvData.educations; let i = index; last as isLast">
+            <div class="card mb-4">
+              <div class="card-body">
+                <h3 class="h6 mb-4">Education</h3>
+                <div class="mb-3">
+                  <label class="form-label">School Name</label>
+                  <input type="text" class="form-control" [(ngModel)]="education.school" [name]="'cvEducation' + i"
+                    required>
+                </div>
+                <div class="row">
+                  <div class="col-lg-6">
+                    <div class="mb-3">
+                      <label class="form-label">Faculty</label>
+                      <input type="text" class="form-control" [(ngModel)]="education.faculty"
+                        [name]="'cvEducationFaculty' + i" required>
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="mb-3">
+                      <label class="form-label">Degree</label>
+                      <select class="form-select" [(ngModel)]="education.degree" [name]="'degree' + i">
+                        <option value="">Select Degree</option>
+                        <option *ngFor="let degree of cvFacadeService.degreeEnumService.degrees" [ngValue]="degree">{{
+                          getDegreeString(degree) }}</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-6">
+                    <div class="mb-3">
+                      <label class="form-label">Graduation Date</label>
+                      <input type="date" class="form-control" [(ngModel)]="education.graduationDate"
+                        [name]="'graduationDate' + i" required>
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="mb-3">
+                      <label class="form-label">Graduation City</label>
+                      <input type="text" class="form-control" [(ngModel)]="education.city" [name]="'city' + i" required>
+                    </div>
+                  </div>
+                  <div *ngIf="isLast" class="d-flex justify-content-between">
+                    <div class="col-md-12">
+                      <div class="d-flex justify-content-between">
+                        <i class="fa-regular fa-square-plus fa-xl mouse-hover avatar-item" (click)="addEducation()"
+                          style="color: #63E6BE;"></i>
+                        <i class="fa-sharp fa-solid fa-trash fa-xl mouse-hover avatar-item" style="color: #f07a92;"
+                          (click)="removeEducation()"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ng-container>
+          <!--Previous Workplace Information-->
+          <ng-container *ngFor="let experience of cvData.workExperiences; let i = index; last as isLast">
+            <div class="card mb-4">
+              <div class="card-body">
+                <h3 class="h6 mb-4">Previous Workplace</h3>
+                <div class="mb-3">
+                  <label class="form-label">Employer</label>
+                  <input type="text" class="form-control" [(ngModel)]="experience.employer" [name]="'cvEducation' + i"
+                    required>
+                </div>
+                <div class="row">
+                  <div class="col-lg-6">
+                    <div class="mb-3">
+                      <label class="form-label">Job Title</label>
+                      <input type="text" class="form-control" [(ngModel)]="experience.jobTitle"
+                        [name]="'cvEmployer' + i" required>
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="mb-3">
+                      <label class="form-label">City</label>
+                      <input type="text" class="form-control" [(ngModel)]="experience.city" [name]="'cvJobTitle' + i"
+                        required>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-6">
+                    <div class="mb-3">
+                      <label class="form-label">Started On</label>
+                      <input type="date" class="form-control" [(ngModel)]="experience.startDate"
+                        [name]="'cvStartDate' + i" required>
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="mb-3">
+                      <label class="form-label">Left On</label>
+                      <input type="date" class="form-control" [(ngModel)]="experience.endDate" [name]="'cvEndDate' + i"
+                        required [min]="experience.startDate">
+                      <div
+                        *ngIf="experience.startDate && experience.endDate && experience.startDate > experience.endDate"
+                        class="text-danger">Left date should be after start date.</div>
+                    </div>
+                  </div>
+                </div>
+                <div *ngIf="isLast" class="d-flex justify-content-between">
+                  <i class="fa-regular fa-square-plus fa-xl mouse-hover avatar-item" (click)="addWorkExperience()"
+                    style="color: #63E6BE;"></i>
+                  <i class="fa-sharp fa-solid fa-trash fa-xl mouse-hover avatar-item" style="color: #f07a92;"
+                    (click)="removeWorkExperience()"></i>
+                </div>
+              </div>
+            </div>
+          </ng-container>
+          <!--Languages Information-->
+          <ng-container *ngFor="let language of cvData.languages; let i = index; last as isLast">
+            <div class="card mb-4">
+              <div class="card-body">
+                <h3 class="h6 mb-4">Languages</h3>
+                <div class="row">
+                  <div class="col-lg-6">
+                    <div class="mb-3">
+                      <label class="form-label">Language</label>
+                      <input type="text" class="form-control" [(ngModel)]="language.language" [name]="'cvLanguage' + i"
+                        required>
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="mb-3">
+                      <label class="form-label">Listening</label>
+                      <select class="form-control" [(ngModel)]="language.listening" [name]="'listeningCat' + i"
+                        required>
+                        <option value="" disabled>Select Degree</option>
+                        <option *ngFor="let cat of cvFacadeService.categoryEnumService.categories" [ngValue]="cat">{{
+                          getCategoryString(cat) }}</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-6">
+                    <div class="mb-3">
+                      <label class="form-label">Speaking</label>
+                      <select class="form-control" [(ngModel)]="language.speaking" [name]="'speakingCat' + i" required>
+                        <option value="" disabled>Select Degree</option>
+                        <option *ngFor="let cat of cvFacadeService.categoryEnumService.categories" [ngValue]="cat">{{
+                          getCategoryString(cat) }}</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="mb-3">
+                      <label class="form-label">Writing</label>
+                      <select class="form-control" [(ngModel)]="language.writing" [name]="'writingCat' + i" required>
+                        <option value="" disabled>Select Degree</option>
+                        <option *ngFor="let cat of cvFacadeService.categoryEnumService.categories" [ngValue]="cat">{{
+                          getCategoryString(cat) }}</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div *ngIf="isLast" class="d-flex justify-content-between">
+                  <i class="fa-regular fa-square-plus fa-xl mouse-hover avatar-item" (click)="addLanguage()"
+                    style="color: #63E6BE;"></i>
+                  <i class="fa-sharp fa-solid fa-trash fa-xl mouse-hover avatar-item" style="color: #f07a92;"
+                    (click)="removeLanguage()"></i>
+                </div>
+              </div>
+            </div>
+          </ng-container>
+        </div>
+        <!--Avatar Selector-->
+        <div class="col-lg-4">
+          <div class="card mb-4">
+            <div class="card-body">
+              <h3 class="h6 text-center">Select Your Avatar</h3>
+              <div class="avatar-list">
+                <div class="row">
+                  <div class="col-md-6"
+                    *ngFor="let avatar of cvFacadeService.avatarService.avatarUrls.slice(0, cvFacadeService.avatarService.avatarUrls.length / 2)">
+                    <div class="mouse-hover">
+                      <img [src]="avatar" alt="Avatar" class="avatar-item mouse-hover img-fluid img-thumbnail mb-3"
+                        (click)="selectAvatar(avatar)"
+                        [ngClass]="{ 'selected': cvFacadeService.avatarService.selectedAvatarUrl === avatar }">
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6"
+                    *ngFor="let avatar of cvFacadeService.avatarService.avatarUrls.slice(cvFacadeService.avatarService.avatarUrls.length / 2)">
+                    <div class="mouse-hover">
+                      <img [src]="avatar" alt="Avatar" class="avatar-item mouse-hover img-fluid img-thumbnail mb-3"
+                        (click)="selectAvatar(avatar)"
+                        [ngClass]="{ 'selected': cvFacadeService.avatarService.selectedAvatarUrl === avatar }">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--Background Selector-->
+          <div class="card mb-4">
+            <div class="card-body">
+              <h3 class="h6 text-center">Background Color</h3>
+              <div class="avatar-list">
+                <div class="row">
+                  <div class="col-md-6"
+                    *ngFor="let Background of cvFacadeService.backgroundService.backgroundUrl.slice(0, cvFacadeService.backgroundService.backgroundUrl.length / 2)">
+                    <div class="mouse-hover">
+                      <img [src]="Background" alt="Background" class="img-fluid img-thumbnail mb-3 mouse-hover"
+                        (click)="selectBacground(Background)"
+                        [ngClass]="{ 'selected': cvFacadeService.backgroundService.selectedBackgroundUrl === Background }">
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6"
+                    *ngFor="let Background of cvFacadeService.backgroundService.backgroundUrl.slice(cvFacadeService.backgroundService.backgroundUrl.length / 2)">
+                    <div class="mouse-hover">
+                      <img [src]="Background" alt="Background" class="img-fluid img-thumbnail mouse-hover mb-3"
+                        (click)="selectBacground(Background)"
+                        [ngClass]="{ 'selected': cvFacadeService.backgroundService.selectedBackgroundUrl === Background }">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--Skill Information-->
+          <ng-container *ngFor="let skill of cvData.skills; let i = index; last as isLast">
+            <div class="card mb-4">
+              <div class="card-body">
+                <h3 class="h6">Skill/Achivement</h3>
+                <input type="text" class="form-control" [(ngModel)]="skill.skill" [name]="'cvSkill' + i" required>
+                <br>
+                <div *ngIf="isLast" class="d-flex justify-content-between">
+                  <i class="fa-regular fa-square-plus fa-xl mouse-hover avatar-item" (click)="addSkill()"
+                    style="color: #63E6BE;"></i>
+                  <i class="fa-sharp fa-solid fa-trash fa-xl mouse-hover avatar-item" style="color: #f07a92;"
+                    (click)="removeSkill()"></i>
+                </div>
+              </div>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

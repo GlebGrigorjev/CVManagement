@@ -1,0 +1,31 @@
+<!-- cv-list.component.html -->
+<div class="container">
+  <div class="main-body">
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-xl-3 gutters-sm">
+      <div class="col mb-3 mouse-hover card-item" *ngFor="let data of cvFacade.getCvListService.list; let i = index">
+        <div class="card">
+          <img *ngIf="data.colourUrl" [src]="data.colourUrl" alt="Cover" class="card-img-top">
+          <div class="card-body text-center mouse-hover" [routerLink]="['/view-cv', data.id]">
+            <img *ngIf="data.avatarUrl" [src]="data.avatarUrl" style="width: 120px; margin-top: -75px"
+              alt="Selected Avatar" class="img-fluid img-thumbnail rounded-circle border-0 mb-3">
+            <h5 class="card-title">{{data.name}} {{data.surname}}</h5>
+            <p class="text-secondary mb-1">{{data.eMail}}</p>
+            <p class="text-muted font-size-sm">{{data.phoneNumber}}</p>
+          </div>
+          <div class="card-footer d-flex justify-content-between align-items-center">
+            <i class="fa-regular fa-pen-to-square fa-xl mouse-hover avatar-item" [routerLink]="['/edit-cv', data.id]"
+              style="color: #74C0FC;"></i>
+            <i class="fa-sharp fa-solid fa-trash fa-xl mouse-hover avatar-item" (click)="deleteCv(data.id)"
+              style="color: #f07a92;"></i>
+          </div>
+          <br>
+        </div>
+      </div>
+      <div class="col mb-6 d-flex justify-content-center align-items-center">
+        <img src="https://cdn.pixabay.com/photo/2021/12/21/04/58/add-6884593_960_720.png" style="width:90px;" alt="User"
+          class="img-fluid img-thumbnail rounded-circle border-0 mb-3 mouse-hover avatar-item"
+          [routerLink]="['/create-cv']">
+      </div>
+    </div>
+  </div>
+</div>

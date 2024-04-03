@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34714.143
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LatvijasPasts", "LatvijasPasts\LatvijasPasts.csproj", "{0010BAFE-7A8D-4217-8B1F-7497421674C3}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LatvijasPasts.Core", "LatvijasPastsCore\LatvijasPasts.Core.csproj", "{8BE8B835-39BF-4934-A064-7D23C8FC4ABE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LatvijasPasts.Data", "LatvijasPastsData\LatvijasPasts.Data.csproj", "{2DB23919-AF2A-42D8-BB36-F5BC5C9E7E92}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LatvijasPasts.Services", "LatvijasPasts.Services\LatvijasPasts.Services.csproj", "{C9D0B36F-3E9E-4DDF-8888-76DC24995E86}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LatvijasPasts.UseCases", "LatvijasPasts.UseCases\LatvijasPasts.UseCases.csproj", "{ADBC214A-638D-4AE5-BDE5-6790C11F84ED}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LatvijasPasts.Tests", "LatvijasPasts.Tests\LatvijasPasts.Tests.csproj", "{26493A1F-168C-43E2-AB04-AB440922C5AB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0010BAFE-7A8D-4217-8B1F-7497421674C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0010BAFE-7A8D-4217-8B1F-7497421674C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0010BAFE-7A8D-4217-8B1F-7497421674C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0010BAFE-7A8D-4217-8B1F-7497421674C3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8BE8B835-39BF-4934-A064-7D23C8FC4ABE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8BE8B835-39BF-4934-A064-7D23C8FC4ABE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8BE8B835-39BF-4934-A064-7D23C8FC4ABE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8BE8B835-39BF-4934-A064-7D23C8FC4ABE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2DB23919-AF2A-42D8-BB36-F5BC5C9E7E92}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2DB23919-AF2A-42D8-BB36-F5BC5C9E7E92}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2DB23919-AF2A-42D8-BB36-F5BC5C9E7E92}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2DB23919-AF2A-42D8-BB36-F5BC5C9E7E92}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C9D0B36F-3E9E-4DDF-8888-76DC24995E86}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C9D0B36F-3E9E-4DDF-8888-76DC24995E86}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C9D0B36F-3E9E-4DDF-8888-76DC24995E86}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C9D0B36F-3E9E-4DDF-8888-76DC24995E86}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ADBC214A-638D-4AE5-BDE5-6790C11F84ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ADBC214A-638D-4AE5-BDE5-6790C11F84ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ADBC214A-638D-4AE5-BDE5-6790C11F84ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ADBC214A-638D-4AE5-BDE5-6790C11F84ED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{26493A1F-168C-43E2-AB04-AB440922C5AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{26493A1F-168C-43E2-AB04-AB440922C5AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{26493A1F-168C-43E2-AB04-AB440922C5AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{26493A1F-168C-43E2-AB04-AB440922C5AB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E74936EB-76C3-4CDD-8F12-F549282DE50D}
+	EndGlobalSection
+EndGlobal
