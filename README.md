@@ -10,23 +10,23 @@ This project has been deployed using GitHub Pages and Azure hosting service. You
 ## How It's Made
 **Backend Includes:**
 
-- LatvijasPasts: API controllers for interacting with CV data and startup configurations.
-- LatvijasPasts.Core: Core models and entities for managing CV data.
-- LatvijasPasts.Data: DBContext model and migration info for database management.
-- LatvijasPasts.Services: Service models for implementing business logic.
-- LatvijasPasts.UseCases: Mediator pattern implementation for handling CV data use cases, including AutoMapper configuration and FluentValidations for data validation.
-- LatvijasPasts.Test: Comprehensive unit tests covering all main parts of the program.
+- [LatvijasPasts:](https://github.com/GlebGrigorjev/CvManagement/tree/master/LatvijasPasts/LatvijasPasts) API controllers for interacting with CV data and startup configurations.
+- [LatvijasPasts.Core:](https://github.com/GlebGrigorjev/CvManagement/tree/master/LatvijasPasts/LatvijasPastsCore) Core models and entities for managing CV data.
+- [LatvijasPasts.Data:](https://github.com/GlebGrigorjev/CvManagement/tree/master/LatvijasPasts/LatvijasPastsData) DBContext model and migration info for database management.
+- [LatvijasPasts.Services:](https://github.com/GlebGrigorjev/CvManagement/tree/master/LatvijasPasts/LatvijasPasts.Services) Service models for implementing business logic.
+- [LatvijasPasts.UseCases:](https://github.com/GlebGrigorjev/CvManagement/tree/master/LatvijasPasts/LatvijasPasts.UseCases) Mediator pattern implementation for handling CV data use cases, including AutoMapper configuration and FluentValidations for data validation.
+- [LatvijasPasts.Test:](https://github.com/GlebGrigorjev/CvManagement/tree/master/LatvijasPasts/LatvijasPasts.Tests) Comprehensive unit tests covering all main parts of the program.
 
 **Frontend Includes:**
 
-*Components:*
+[*Components:*](https://github.com/GlebGrigorjev/CvManagement/tree/master/LatvijasPastsAngular/src/app/shared/Services)
 - cv-list: List and manage CVs.
 - cv-details: View detailed information about a CV.
 - create-cv: Create a new CV.
 - edit-cv: Edit an existing CV.
-- header: Header and navigation components.
+- delete-cv: Delete a specific CV.
 
-*Services:*
+[*Services:*](https://github.com/GlebGrigorjev/CvManagement/tree/master/LatvijasPastsAngular/src/app/shared/Services)
 - get-cv-list-service: Fetch CV data from the backend API.
 - delete-cv-service: Delete CV data using the backend API.
 - create-cv-service: Create new CV data using the backend API.
@@ -34,14 +34,14 @@ This project has been deployed using GitHub Pages and Azure hosting service. You
 - cv-facade-service: Facade service for coordinating interactions between frontend components and backend services.
 It encapsulates complex interactions and provides a simplified interface for the frontend to communicate with the backend.
   
-*Models:*
+[*Models:*](https://github.com/GlebGrigorjev/CvManagement/tree/master/LatvijasPastsAngular/src/app/shared/Models)
 - CvData: Represents the structure of CV data used within the application.
   
-*Routing:*
-- Contains routing configuration for navigating between different views/components.
-  
-*styles.scss:*
-- Main SCSS file for defining global styles for the application.
+[*Views:*](https://github.com/GlebGrigorjev/CvManagement/tree/master/LatvijasPastsAngular/src/app/Views)
+- cv-list-service: HTML, CSS, TypeScript components responsible for displaying a list of CVs on the home page.
+- create-cv: HTML, CSS, TypeScript components for the "Create CV" page, allowing users to input their information and generate a CV.
+- edit-cv: HTML, CSS, TypeScript components for editing existing CV data. This likely involves forms and UI elements to modify CV information.
+- view-cv: HTML, CSS, TypeScript components to display a single CV's details. This could include a detailed view of the CV with all its sections and information.
 
 ## Technologies Used
 
