@@ -5,7 +5,7 @@ It leverages Angular for the frontend and C#/.NET for the backend, offering a dy
 
 ## Live Project:
 
-This project has been deployed using GitHub Pages and Azure hosting service. You can view the live version by clicking here.
+This project has been deployed using GitHub Pages and Azure hosting service. You can view the live version by [clicking here](https://glebgrigorjev.github.io/CvManagement/).
 
 ## How It's Made
 **Backend Includes:**
