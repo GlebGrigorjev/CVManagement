@@ -41,7 +41,7 @@ It encapsulates complex interactions and provides a simplified interface for the
 - Contains routing configuration for navigating between different views/components.
   
 *styles.scss:*
-Main SCSS file for defining global styles for the application.
+- Main SCSS file for defining global styles for the application.
 
 ## Technologies Used
 
