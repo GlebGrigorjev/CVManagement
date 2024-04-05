@@ -1,3 +1,3 @@
 export const environment = {
-    apiBase: 'http://localhost:5241/api'  
+    apiBase: 'https://cvmanager.azurewebsites.net/api'  
 };
